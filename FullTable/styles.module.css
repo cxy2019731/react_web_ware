@@ -1,0 +1,26 @@
+.table_box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.table_header {
+  box-sizing: border-box;
+  position: relative;
+}
+.table_body {
+  flex-grow: 1;
+}
+.custom_total {
+  color: rgba(0, 0, 0, 0.5);
+}
+.custom_total_nums {
+  color: green;
+}
+.custom_total_start {
+  color: #fd9500;
+}
+.custom_total_end {
+  color: #fd9500;
+}
