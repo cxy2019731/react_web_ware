@@ -1,0 +1,39 @@
+// 全局滚动条美化
+*:hover {
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(199, 201, 204, 0.45);
+	}
+}
+*::-webkit-scrollbar {
+	box-sizing: border-box;
+	padding-left: 11px;
+	padding-top: 11px;
+	height: 6px;
+	width: 6px;
+	background-color: rgba(0, 0, 0, 0);
+}
+*::-webkit-scrollbar-button {
+	// 滑道上下的点击按钮
+	display: none;
+}
+*::-webkit-scrollbar-thumb {
+	// 滑道内滑条
+	opacity: 0;
+	background-color: rgba(199, 201, 204, 0);
+	border-radius: 6px;
+	&:hover {
+		background-color: @primary-color;
+	}
+}
+*::-webkit-scrollbar-track {
+	// 滑道
+	background-color: rgba(0, 0, 0, 0);
+}
+*::-webkit-scrollbar-track-piece {
+	// 未被滑条覆盖的滑道
+	display: none;
+}
+*::-webkit-scrollbar-corner {
+	// x轴y轴交汇处方块
+	display: none;
+}
