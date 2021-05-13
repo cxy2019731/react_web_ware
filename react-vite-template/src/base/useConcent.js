@@ -1,8 +1,8 @@
 /**
  * 用户绑定函数组件和模块
  */
-import { useConcent } from 'concent';
+import { useConcent as useC2Module } from 'concent';
 
-export default function useC2Module(options) {
-	return useConcent(options);
+export default function useConcent(options) {
+	return useC2Module(options);
 }

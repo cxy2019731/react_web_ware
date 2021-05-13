@@ -5,8 +5,12 @@ import svgr from 'vite-plugin-svgr';
 import styleImport from './styleImport';
 import legacy from './legacy';
 
-const createVitePlugins = () => {
-	const vitePlugins = [reactRefresh(), svgr(), legacy(), styleImport()];
+const createVitePlugins = (isService, isBuild) => {
+	const vitePlugins = [reactRefresh(), svgr(), styleImport()];
+
+	if (isBuild) {
+		vitePlugins.push(legacy());
+	}
 
 	return vitePlugins;
 };

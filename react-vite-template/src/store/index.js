@@ -7,7 +7,9 @@
  * @FilePath: \react-vite2-template\src\store\index.js
  */
 import global from './global/index';
+import settings from './settings/index';
 
 export default {
 	...global,
+	...settings,
 };

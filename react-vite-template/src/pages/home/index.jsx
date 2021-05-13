@@ -1,5 +1,5 @@
-function HomeView(props){
-	return <>HomeView</>
+function HomeView(props) {
+	return <>HomeView</>;
 }
 
 export default HomeView;

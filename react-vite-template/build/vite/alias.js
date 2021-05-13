@@ -8,6 +8,7 @@ const createViteAlias = () => {
 		{ find: 'cstMod', replacement: '/src/base/cstMod.js' },
 		{ find: 'useConcent', replacement: '/src/base/useConcent.js' },
 		{ find: 'useSetup', replacement: '/src/base/useSetup.js' },
+		{ find: 'FontIcon', replacement: '/src/components/FontIcon/index.jsx' },
 		{ find: /^~/, replacement: '' },
 	];
 

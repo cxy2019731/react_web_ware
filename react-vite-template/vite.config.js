@@ -35,7 +35,7 @@ export default ({ command, mode }) => {
 		},
 		server: createViteServer(),
 		css: createViteCss(),
-		plugins: createVitePlugins(),
+		plugins: createVitePlugins(isService,isBuild),
 	};
 	if (isBuild) {
 		config.build = createViteBuild();

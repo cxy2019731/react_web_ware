@@ -1,5 +1,5 @@
 const { getThemeVariables } = require('antd/dist/theme');
-
+import customTheme from '../config/theme';
 const createViteCss = () => {
 	const config = {
 		postcss: {
@@ -16,10 +16,9 @@ const createViteCss = () => {
 			less: {
 				javascriptEnabled: true,
 				modifyVars: getThemeVariables({
+					dark: false,
 					compact: false,
-					customTheme: {
-						'primary-color': '#0aa679',
-					},
+					customTheme,
 				}),
 			},
 			scss: {

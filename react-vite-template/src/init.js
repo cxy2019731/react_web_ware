@@ -1,6 +1,5 @@
 // 初始化connect
 import '@/configs/_runConcent';
-
 // 初始化国际化
 import { registerI18n, sm } from 'cxy-react-i18n';
 import i18nLocal from '@/i18n/index';

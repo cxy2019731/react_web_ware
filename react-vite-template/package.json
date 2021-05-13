@@ -10,6 +10,7 @@
     "ahooks": "^2.10.3",
     "antd": "^4.15.5",
     "axios": "^0.21.1",
+    "classnames": "^2.3.1",
     "concent": "^2.14.25",
     "cxy-react-i18n": "^1.30.28",
     "qs": "^6.10.1",
@@ -27,6 +28,7 @@
     "sass": "^1.32.12",
     "vite": "^2.3.0",
     "vite-plugin-style-import": "^0.10.0",
-    "vite-plugin-svgr": "0.2.0"
+    "vite-plugin-svgr": "0.2.0",
+    "vite-plugin-theme": "^0.7.1"
   }
 }
