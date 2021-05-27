@@ -6,9 +6,3 @@
  * @LastEditTime: 2021-04-08 15:23:07
  * @FilePath: \react-vite2-template\src\store\global\state.js
  */
-export function openKeysChange(openKeys) {
-	return { openKeys };
-}
-export function onSelectedKeysChange(selectedKeys) {
-	return { selectedKeys };
-}

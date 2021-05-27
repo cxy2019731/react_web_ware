@@ -28,14 +28,14 @@ export default ({ command, mode }) => {
 		base: '/',
 		root: process.cwd(),
 		esbuild: {
-			jsxInject: `import React from 'react'`,
+			jsxInject: `import React from 'react';import useConcent from '@useConcent';`,
 		},
 		resolve: {
 			alias: createViteAlias(),
 		},
 		server: createViteServer(),
 		css: createViteCss(),
-		plugins: createVitePlugins(isService,isBuild),
+		plugins: createVitePlugins(isService, isBuild),
 	};
 	if (isBuild) {
 		config.build = createViteBuild();

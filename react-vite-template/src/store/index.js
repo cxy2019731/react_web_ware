@@ -8,8 +8,10 @@
  */
 import global from './global/index';
 import settings from './settings/index';
+import user from './user/index';
 
 export default {
 	...global,
 	...settings,
+	...user,
 };

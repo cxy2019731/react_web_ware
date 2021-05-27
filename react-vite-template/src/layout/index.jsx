@@ -1,5 +1,7 @@
+import { Outlet } from 'react-router-dom';
+
 function LayoutView(props) {
-	return <>{props.children}</>;
+	return <Outlet />;
 }
 
 export default LayoutView;

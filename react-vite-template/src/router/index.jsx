@@ -6,48 +6,53 @@
  * @LastEditTime: 2021-04-08 14:02:09
  * @FilePath: \react-vite2-template\src\router\index.jsx
  */
-import { HashRouter, Switch, Redirect } from 'react-router-dom';
-import AuthorizedRoute from './AuthorizedRoute';
-import routes from './routes';
-import App from '@/App';
 
-function renderRoutes(list) {
-	return list.map((rc) => {
-		const { path, component: Component, authority, redirectPath, routes, ...rest } = rc;
-		const prop = {
-			key: path,
-			path,
-			authority,
-			redirectPath,
-			...rest,
-		};
-		if (routes && routes.length) {
-			return (
-				<AuthorizedRoute
-					{...prop}
-					render={(props) => (
-						<Component>
-							<Switch>
-								{renderRoutes(routes)}
-								<Redirect to='/notFound' />
-							</Switch>
-						</Component>
-					)}
-				/>
-			);
-		}
-		return <AuthorizedRoute {...prop} component={Component} />;
-	});
-}
-
-export default () => {
+import { memo } from 'react';
+import { HashRouter, useRoutes } from 'react-router-dom';
+import routes from '@/router/routeComponents';
+/**
+ * 路由集合
+ */
+const Elements = memo(() =>
+	useRoutes([
+		{
+			path: '/',
+			element: <routes.layout />,
+			children: [
+				{
+					path: 'home',
+					element: <routes.home />,
+				},
+				{
+					path: '*',
+					element: <routes.notFount />,
+				},
+			],
+		},
+		{
+			path: '/initialize',
+			element: <routes.initialize />,
+		},
+		{
+			path: '/login',
+			element: <routes.login />,
+		},
+		{
+			path: '*',
+			element: <routes.notFount />,
+		},
+	]),
+);
+/**
+ * 路由组件(此处Routes中的内容必须写为组件形式,否则报错)
+ */
+function Router() {
 	return (
 		<HashRouter basename='/'>
-			<Switch>
-				<App>
-					<Switch>{renderRoutes(routes)}</Switch>
-				</App>
-			</Switch>
+			<routes.app>
+				<Elements />
+			</routes.app>
 		</HashRouter>
 	);
-};
+}
+export default Router;

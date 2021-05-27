@@ -1,9 +1,5 @@
 import { memo } from 'react';
-
-// 模拟下用户的权限组-实际使用需要连接权限状态数据赋值于 currentAuthority 即可
-const userRoles = ['ordinary', 'admin2']; //角色key
-const userAuths = ['home', 'about', 'list', 'info']; //具体权限key
-
+import { _USER } from '@constant';
 /**
  * 授权判定
  * @param {object} props 参数
@@ -13,8 +9,10 @@ const userAuths = ['home', 'about', 'list', 'info']; //具体权限key
  * @returns node | null
  */
 function Authorized(props) {
+	const { moduleState: ms } = useConcent({ module: _USER });
 	const { children = null, authority, noMatch = '无权限' } = props;
-	const currentAuthority = [...userRoles, ...userAuths];
+	// currentAuthority需要放入角色key、权限key
+	const currentAuthority = useMemo(() => [...ms.auths, ...ms.roles], [ms.auths, ms.roles]);
 
 	if (!authority) return children;
 

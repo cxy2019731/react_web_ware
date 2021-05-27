@@ -6,7 +6,7 @@
  * @LastEditTime: 2021-04-08 15:26:34
  * @FilePath: \react-vite2-template\src\store\global\index.js.js
  */
-import { _SETTINGS } from '@constant';
+import { _USER } from '@constant';
 import state from './state';
 import lifecycle from './lifecycle';
 import * as watch from './watch';
@@ -14,7 +14,7 @@ import * as reducer from './reducer';
 import * as computed from './computed';
 
 export default {
-	[_SETTINGS]: {
+	[_USER]: {
 		state,
 		lifecycle,
 		watch,

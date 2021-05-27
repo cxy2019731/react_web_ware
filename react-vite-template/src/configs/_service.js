@@ -13,4 +13,3 @@ const config = {
 };
 
 export default config[env.MODE];
-// export default production;

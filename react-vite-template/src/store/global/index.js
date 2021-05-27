@@ -6,7 +6,7 @@
  * @LastEditTime: 2021-04-08 15:26:34
  * @FilePath: \react-vite2-template\src\store\global\index.js.js
  */
-import { _GLOBAL } from 'cstMod';
+import { _GLOBAL } from '@constant';
 import state from './state';
 import lifecycle from './lifecycle';
 import * as watch from './watch';

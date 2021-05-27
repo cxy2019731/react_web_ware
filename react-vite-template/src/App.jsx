@@ -1,13 +1,18 @@
-import ccReducer from '@/base/ccReducer';
-import { _GLOBAL } from 'cstMod';
-import { useLocation } from 'react-router-dom';
+import { _USER, _INITIALIZE, _LOGIN } from '@constant';
+import { useNavigate } from 'react-router-dom';
 
 export default (props) => {
-	// test
-	const _useLocation = useLocation();
-	React.useEffect(() => {
-		ccReducer[_GLOBAL].set_location({ ..._useLocation });
-	}, [_useLocation]);
+	const navigate = useNavigate();
 
-	return <>{props.children}</>;
+	const { moduleState: ms } = useConcent({ module: _USER });
+
+	React.useEffect(() => {
+		if (ms.isLogin) {
+			navigate(_INITIALIZE);
+		} else {
+			navigate(_LOGIN);
+		}
+	}, [ms.isLogin]);
+
+	return props.children;
 };

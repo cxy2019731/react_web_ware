@@ -7,9 +7,11 @@
  * @FilePath: \react-vite2-template\src\configs\runConcent.js
  */
 import { run, clearContextIfHot } from 'concent';
+// import { configureRoute } from "react-router-concent";
 import models from '@/store/index';
 clearContextIfHot(true);
 
 run(models, {
 	isHot: true,
 });
+// configureRoute()

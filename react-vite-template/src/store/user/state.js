@@ -7,10 +7,16 @@
  * @FilePath: \react-vite2-template\src\store\global\state.js
  */
 const state = {
-	// 版本
-	version: `0.0.01`,
-	// 路由菜单-根据用户获取下来的
-	menus:[]
+	// 登录与否
+	isLogin: false,
+	// 初始化数据
+	initStatus: false,
+	// 用户数据
+	info: {},
+	// 用户角色
+	roles: [],
+	// 用户权限
+	auths: [],
 };
 
 export default state;

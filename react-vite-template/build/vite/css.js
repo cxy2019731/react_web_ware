@@ -1,5 +1,5 @@
 const { getThemeVariables } = require('antd/dist/theme');
-import customTheme from '../config/theme';
+
 const createViteCss = () => {
 	const config = {
 		postcss: {
@@ -18,12 +18,10 @@ const createViteCss = () => {
 				modifyVars: getThemeVariables({
 					dark: false,
 					compact: false,
-					customTheme,
+					// customTheme,
 				}),
 			},
-			scss: {
-				additionalData: "@import '@/styles/base.scss';", //全局样式,针对scss文件生效,可直接使用里面的变量
-			},
+			scss: {},
 		},
 	};
 
