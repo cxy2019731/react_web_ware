@@ -677,10 +677,12 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-cxy-react-i18n@^1.30.59:
-  version "1.30.59"
-  resolved "https://registry.yarnpkg.com/cxy-react-i18n/-/cxy-react-i18n-1.30.59.tgz#90994206fb7d4f26005c71e9b16817a3cf5b65f6"
-  integrity sha512-QWanJsFg9Ur9IDrGYgV/5R6GPJxzC3FKcKGTWtVJ8YMIpETIWVL2mCEaiInQs3mlieSbQcO5d5pL3T/Hct4UCQ==
+cxy-react-i18n@^1.31.10:
+  version "1.31.10"
+  resolved "https://registry.yarnpkg.com/cxy-react-i18n/-/cxy-react-i18n-1.31.10.tgz#8226be4168cf51daefdd27e504c3fcc3be14df21"
+  integrity sha512-akRitLkTNBLuhxVsbsRTSDUtu5nhbC1tl+kCQ9Kd3pi82jK0aOWv833R2O/wxOIPVOlk28LEKHiawJBT7R4uEA==
+  dependencies:
+    concent "^2.15.3"
 
 date-fns@^2.15.0:
   version "2.20.0"
