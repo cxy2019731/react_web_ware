@@ -6,5 +6,3 @@ export { default as Authorize } from './Authorized/index';
 export { default as WavesBall } from './WavesBall/index';
 // antd modal封装
 export {default as AntdModal} from './AntdModal/index';
-// 开幕动画效果
-export {default as Curtain} from './Curtain/index';

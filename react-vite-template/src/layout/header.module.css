@@ -1,0 +1,5 @@
+.header{
+    background: var(--headerBgColor);
+    display: flex;
+    justify-content: space-between;
+}
