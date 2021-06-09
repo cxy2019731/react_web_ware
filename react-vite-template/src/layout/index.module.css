@@ -1,0 +1,7 @@
+.main{
+    display: flex;
+    justify-content: flex-start;
+}
+.main_content{
+    flex-grow: 1;
+}

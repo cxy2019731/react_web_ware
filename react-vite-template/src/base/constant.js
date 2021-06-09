@@ -19,6 +19,8 @@ export const _TOKEN = `authorization`;
 export const _TOKEN_TIME = 24*60*60;
 // 用户信息本地存储key
 export const _USER_STORAGE = `user_storage_info`;
+// 本地存储路由key
+export const _LOCAL_ROUTER_PATH = `local_router_path`;
 
 /**
  *=============================================concent模块变量=============================================

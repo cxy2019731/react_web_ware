@@ -1,4 +1,7 @@
 :root {
+	/* 主要色 */
+	--primary: #1890ff;
+	/* 布局色 */
 	--headerBgColor: #2980b9;
 	--siderBgColor: #3b3e47;
 }

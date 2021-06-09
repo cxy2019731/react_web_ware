@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { _HOME, _USER } from '@constant';
+import { _HOME, _USER, _LOCAL_ROUTER_PATH } from '@constant';
 import { useInterval } from 'ahooks';
 import css from './index.module.less';
 import { httpGetUserInfo } from '@http';
@@ -26,7 +26,7 @@ export default (props) => {
 
 	const { state, settings: st, mr } = useConcent({ module: _USER, setup });
 
-	useInterval(st.changeProgress, state.progress < state.targetProgress ? 20 : null);
+	useInterval(st.changeProgress, state.progress < state.targetProgress ? 0 : null);
 	// 用户信息get
 	const getUserInfo = async () => {
 		st.changeUserCount(_user_count / 2);
@@ -47,7 +47,8 @@ export default (props) => {
 	// 加载完成跳转
 	React.useEffect(() => {
 		if (state.progress >= 100) {
-			navigate(_HOME);
+			const catch_router_path = sessionStorage.getItem(_LOCAL_ROUTER_PATH) || null;
+			navigate(catch_router_path || _HOME);
 		}
 	}, [state.progress]);
 

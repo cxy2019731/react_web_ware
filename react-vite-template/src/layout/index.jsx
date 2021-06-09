@@ -4,6 +4,7 @@ import Sider from './Sider';
 import Footer from './Footer';
 import css from './index.module.css';
 import { _SETTINGS } from '@constant';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 function setup(ctx) {
 	ctx.initState({});
@@ -15,13 +16,23 @@ function setup(ctx) {
 
 function LayoutView(props) {
 	const { state, moduleState: ms } = useConcent({ module: _SETTINGS, setup, props });
-	console.log(ms);
+	const refMainContent = React.useRef(null);
+
+	React.useEffect(() => {
+		if (refMainContent.current) {
+			const ps = new PerfectScrollbar(refMainContent.current, {
+				wheelSpeed: 2,
+				minScrollbarLength: 20,
+			});
+		}
+	}, [refMainContent]);
+
 	return (
 		<>
 			<Header />
-			<div style={{ height: `calc(100vh - ${ms.header_height})` }}>
+			<div className={css.main} style={{ height: `calc(100vh - ${ms.header_height})` }}>
 				<Sider />
-				<div>
+				<div className={css.main_content} ref={refMainContent}>
 					<Outlet />
 					<Footer />
 				</div>

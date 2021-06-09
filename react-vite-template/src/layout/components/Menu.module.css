@@ -1,0 +1,74 @@
+
+.menu {
+	--menu_item_height: 45px;
+	--defaultFontColor: #b2b8be;
+}
+.menu_item {
+}
+
+/* 展开菜单 */
+.menu_item_more,
+.menu_item_default {
+	display: block;
+	color: var(--defaultFontColor);
+	height: var(--menu_item_height);
+	padding-left: calc(var(--menu_item_height) / 2);
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    cursor: pointer;
+}
+.menu_item_more::before,
+.menu_item_default::before,
+.menu_item_active::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: calc(var(--menu_item_height) / 20);
+	z-index: 555;
+	background-color: transparent;
+}
+.menu_item_left {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.menu_item_icon {
+	font-size: 20px;
+}
+.menu_item_title {
+	margin-left: calc(var(--menu_item_height) / 3);
+}
+.menu_item_arrow {
+	float: right;
+	margin-right: calc(var(--menu_item_height) / 3);
+	transition: all 0.1s ease-in;
+}
+/* 展开移入 */
+.menu_item_more:hover,
+.menu_item_default:hover,
+.menu_item_active {
+	background-color: rgba(0, 0, 0, 0.2);
+	color: var(--primary);
+}
+.menu_item_more:hover::before,
+.menu_item_default:hover::before,
+.menu_item_active::before {
+	background-color: var(--primary);
+}
+/* 展开选择 */
+.menu_item_open {
+	color: white !important;
+}
+.menu_item_open::before {
+	background-color: var(--primary) !important;
+}
+.menu_item_open .menu_item_arrow {
+	transform: rotate(90deg);
+}
+.menu_item_open + ul {
+	background-color: rgba(0, 0, 0, 0.5);
+}

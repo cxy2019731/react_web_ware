@@ -1,15 +1,32 @@
-import { _SETTINGS, _USER } from '@constant';
+import { _SETTINGS, _USER, _LOCAL_ROUTER_PATH } from '@constant';
 import css from './sider.module.css';
-import { v4 as uuidV4 } from 'uuid';
-import { SettingOutlined } from '@ant-design/icons';
 import PerfectScrollbar from 'perfect-scrollbar';
-import 'perfect-scrollbar/css/perfect-scrollbar.css';
-import { Icon } from '@components';
+import Menu from './components/Menu';
+import { useLocation } from 'react-router-dom';
+import { getMenuInfo, getTreeArrPaths } from '@utils';
 
-export default (props) => {
-	const { state, moduleState: ms, connectedState: cs } = useConcent({ module: _SETTINGS, connect: [_USER], props });
-	const csUser = cs[_USER];
+function Sider(props) {
+	const location = useLocation();
+
+	const { moduleState: ms, connectedState: cs, connectedReducer: cr } = useConcent({ module: _SETTINGS, connect: [_USER] });
+
+	const userCs = cs[_USER];
+	const userCr = cr[_USER];
+
 	const refSider = React.useRef(null);
+
+	const matchMenu = React.useMemo(() => {
+		const matchItem = getMenuInfo(userCs.menus, location.pathname) || {};
+		if (location.pathname) {
+			sessionStorage.setItem(_LOCAL_ROUTER_PATH, location.pathname);
+		}
+		return matchItem;
+	}, [location.pathname, userCs.menus]);
+
+	React.useEffect(() => {
+		const menuPaths = getTreeArrPaths(userCs.menus, matchMenu);
+		userCr.openMenu(menuPaths.map((l) => l.key));
+	}, [matchMenu]);
 
 	React.useEffect(() => {
 		if (refSider.current) {
@@ -22,30 +39,9 @@ export default (props) => {
 
 	return (
 		<div ref={refSider} className={css.sider} style={{ width: ms.sider_width }}>
-			<Menu menus={csUser.menus} />
+			<Menu matchMenu={matchMenu} />
 		</div>
 	);
-};
-
-function Menu(props) {
-	const { menus = [] } = props;
-	if (!menus.length) {
-		return null;
-	}
-
-	return (
-		<ul className={css.menu}>
-			{menus.map((item, index) => (
-				<li className={css.menu_item} key={item.key}>
-					<span className={css.menu_item_icon}>
-						<SettingOutlined />
-					</span>
-					<span className={css.menu_item_title}>{item.title || item.name}</span>
-					<span className={css.menu_item_arrow}>
-						<Icon type='icon-chevron-right' />
-					</span>
-				</li>
-			))}
-		</ul>
-	);
 }
+
+export default React.memo(Sider);

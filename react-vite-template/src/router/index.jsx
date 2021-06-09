@@ -24,6 +24,10 @@ const Elements = memo(() =>
 					element: <routes.home />,
 				},
 				{
+					path:'moreMenu3-1',
+					element:<h3>/moreMenu3-1</h3>
+				},
+				{
 					path: '*',
 					element: <routes.notFount />,
 				},

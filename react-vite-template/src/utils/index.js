@@ -6,6 +6,9 @@
  * @LastEditTime: 2021-04-08 15:38:56
  * @FilePath: \react-vite2-template\src\utils\index.js
  */
+
+export { getMenuInfo, getTreeArrPaths } from './menu';
+
 import { _TOKEN, _TOKEN_TIME } from '@constant';
 // 获取token
 export function getToken() {
@@ -44,3 +47,45 @@ export const randomHexColorCode = () => {
 	let n = (Math.random() * 0xfffff * 1000000).toString(16);
 	return '#' + n.slice(0, 6);
 };
+/**
+ * 递归构建树
+ * @param {array} roots 数组
+ * @param {atrinf} wrapper id值
+ * @returns array
+ */
+export function buildTree(roots, wrapper, idKey = 'id') {
+	return roots.map((item) => {
+		if (wrapper.has(item[idKey])) {
+			return {
+				...item,
+				children: buildTree(wrapper.get(item[idKey]), wrapper),
+			};
+		} else {
+			return item;
+		}
+	});
+}
+
+/**
+ * 扁平化数组
+ * @param {array} items 数组
+ * @param {string} childrenKey 子集字段名
+ * @returns array
+ */
+export function flattenTree(items, childrenKey = 'children') {
+	const flattenOptions = [];
+	dfs(items);
+	return flattenOptions;
+	function dfs(nodes) {
+		if (nodes == null) {
+			return;
+		}
+		for (const node of nodes) {
+			flattenOptions.push(node);
+			if (!node[childrenKey] || !node[childrenKey].length) {
+			} else {
+				dfs(node[childrenKey]);
+			}
+		}
+	}
+}
