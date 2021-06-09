@@ -6,3 +6,5 @@ export { default as Authorize } from './Authorized/index';
 export { default as WavesBall } from './WavesBall/index';
 // antd modal封装
 export {default as AntdModal} from './AntdModal/index';
+// 自定义图标组件
+export {default as Icon} from './Icon/index';

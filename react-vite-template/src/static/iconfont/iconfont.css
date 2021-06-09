@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2603535 */
+  src: url('iconfont.woff2?t=1623232069059') format('woff2'),
+       url('iconfont.woff?t=1623232069059') format('woff'),
+       url('iconfont.ttf?t=1623232069059') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bookmark:before {
+  content: "\e6a3";
+}
+
+.icon-box:before {
+  content: "\e6a4";
+}
+
+.icon-book-open:before {
+  content: "\e6a5";
+}
+
+.icon-announcementspeaker:before {
+  content: "\e6a6";
+}
+
+.icon-check:before {
+  content: "\e6a7";
+}
+
+.icon-chevron-left:before {
+  content: "\e6a8";
+}
+
+.icon-chevron-down:before {
+  content: "\e6a9";
+}
+
+.icon-chevron-right:before {
+  content: "\e6aa";
+}
+
+.icon-check-square:before {
+  content: "\e6ab";
+}
+
+.icon-check-circle:before {
+  content: "\e6ac";
+}
+
+.icon-chevron-up:before {
+  content: "\e6ad";
+}
+
+.icon-circlecheckfull:before {
+  content: "\e6ae";
+}
+
+.icon-circleradioselectedsolid:before {
+  content: "\e6af";
+}
+
+.icon-circle:before {
+  content: "\e6b0";
+}
+
+.icon-code:before {
+  content: "\e6b1";
+}
+
+.icon-download:before {
+  content: "\e6b2";
+}
+

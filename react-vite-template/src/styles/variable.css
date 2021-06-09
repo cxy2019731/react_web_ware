@@ -1,4 +1,4 @@
 :root {
-	--headerBgColor: linear-gradient(to bottom, #536976, #292e49);
-	--siderBgColor: linear-gradient(to bottom, #536976, #292e49);
+	--headerBgColor: #2980b9;
+	--siderBgColor: #3b3e47;
 }
