@@ -1,0 +1,39 @@
+.menu {
+	width: 100%;
+}
+.menu_item {
+	width: 100%;
+	height: var(--siderItemHeight);
+	font-size: 20px;
+	cursor: pointer;
+}
+.menu_item_default {
+	display: block;
+    text-align: center;
+    line-height: var(--siderItemHeight);
+	color: var(--siderFontColor);
+}
+.menu_item:hover {
+	color: var(--primary);
+	background-color: var(--siderHoverBgColor);
+}
+.menu_item_active {
+	background-color: var(--siderHoverBgColor);
+	color: var(--siderActiveColor);
+}
+.menu_item_active::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: calc(var(--siderItemHeight) / 20);
+	z-index: 555;
+	background-color: var(--primary);
+}
+/* 浮动菜单 */
+.menu_float{
+    position: fixed;
+    z-index: -1000;
+    transition: top .2s ease-in-out;
+}

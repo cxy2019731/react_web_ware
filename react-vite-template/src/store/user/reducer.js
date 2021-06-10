@@ -8,7 +8,6 @@
  */
 import { isTokenEffective, removeToken, getToken } from '@utils';
 import { _USER_STORAGE } from '@constant';
-import { uniq } from 'lodash';
 // 登录
 export function login(token) {
 	return {
@@ -43,37 +42,4 @@ export function resetStatus() {
 export function init() {
 	const isLogin = isTokenEffective();
 	return { isLogin: isLogin ? true : false };
-}
-// 展开收起菜单
-export function openMenu(menuItemKeys, ms) {
-	console.log(menuItemKeys, ms.openMenuKeys);
-	if (ms.isOpenMoreKeys) {
-		// 多选
-		return {
-			openMenuKeys: uniq([...ms.openMenuKeys, ...menuItemKeys]),
-		};
-	} else {
-		// 单选
-		if (menuItemKeys.length) {
-			if (menuItemKeys.length === 1) {
-				if (ms.openMenuKeys.includes(menuItemKeys[0])) {
-					return {
-						openMenuKeys: ms.openMenuKeys.filter((l) => l != menuItemKeys[0]),
-					};
-				} else {
-					return {
-						openMenuKeys: menuItemKeys,
-					};
-				}
-			} else {
-				return {
-					openMenuKeys: menuItemKeys.length > 1 ? menuItemKeys : uniq([...ms.openMenuKeys, ...menuItemKeys]),
-				};
-			}
-		} else {
-			return {
-				openMenuKeys: [],
-			};
-		}
-	}
 }

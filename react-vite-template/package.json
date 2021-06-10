@@ -9,7 +9,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "ahooks": "^2.10.5",
-    "antd": "^4.16.0",
+    "antd": "^4.16.2",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "concent": "^2.15.3",

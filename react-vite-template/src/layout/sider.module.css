@@ -3,4 +3,6 @@
 	background: var(--siderBgColor);
 	position: relative;
 	overflow: hidden;
+    box-shadow: 5px 0 50px 1px rgba(0, 0, 0, .05);
+	transition: all .1s ease-in-out;
 }

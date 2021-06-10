@@ -1,7 +1,13 @@
 :root {
 	/* 主要色 */
 	--primary: #1890ff;
-	/* 布局色 */
-	--headerBgColor: #2980b9;
+	/* 顶部Header */
+	--headerBgColor: #ffffff;
+	/* 菜单Menu */
 	--siderBgColor: #3b3e47;
+	--siderFontColor: #b2b8be;
+	--siderItemHeight: 45px;
+	--siderHoverColor: var(--primary);
+	--siderHoverBgColor: rgba(0, 0, 0, 0.2);
+	--siderActiveColor: white;
 }

@@ -1,10 +1,11 @@
 import { Icon } from '@components';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import { _USER } from '@constant';
-import css from './Menu.module.css';
-function Menu(props) {
-	const { moduleState: ms, mr } = useConcent({ module: _USER });
+import { _SETTINGS } from '@constant';
+import css from './OpenMenu.module.css';
+
+function OpenMenu(props) {
+	const { moduleState: ms, mr } = useConcent({ module: _SETTINGS });
 	const { menus = ms.menus, style = {}, zIndex = 0, matchMenu = {} } = props;
 	if (!menus.length) {
 		return null;
@@ -13,19 +14,14 @@ function Menu(props) {
 		list.map((item, index) => {
 			// 是否有子集
 			const isChild = item.children && item.children.length;
+
 			// 是否展开
-			const isOpen = isChild ? ms.openMenuKeys.includes(item.key) : false;
+			const isOpen = isChild ? ms.openMenuKeys.includes(item.id) : false;
 			const itemContent = (
 				<>
 					<span className={css.menu_item_left}>
-						{zIndex > 0 ? null : (
-							<span className={css.menu_item_icon}>
-								<Icon type={item.icon} />
-							</span>
-						)}
-						<span className={css.menu_item_title} style={{ marginLeft: (zIndex + 1) * 20 }}>
-							{item.title || item.name}
-						</span>
+						<span className={css.menu_item_icon}>{zIndex > 0 ? null : <Icon type={item.icon} />}</span>
+						<span className={css.menu_item_title}>{item.title || item.name}</span>
 					</span>
 					{isChild ? (
 						<span className={css.menu_item_arrow}>
@@ -35,28 +31,33 @@ function Menu(props) {
 				</>
 			);
 			return (
-				<li className={css.menu_item} key={item.key}>
+				<li className={css.menu_item} key={item.id}>
 					{isChild ? (
 						<>
 							<span
-								onClick={() => mr.openMenu([item.key])}
+								onClick={() => mr.openMenu([item.id])}
 								className={classnames({
 									[css.menu_item_more]: true,
 									[css.menu_item_open]: !!isOpen,
-								})}>
+								})}
+								style={{ paddingLeft: zIndex * 22.5 }}>
 								{itemContent}
 							</span>
-							<Menu
+							<OpenMenu
 								menus={item.children || []}
 								style={{ display: isOpen ? 'block' : 'none' }}
 								zIndex={zIndex + 1}
-								matchMenu={matchMenu}
+								matchMenu={matchMenu || {}}
 							/>
 						</>
 					) : (
 						<Link
 							to={item.path || ''}
-							className={classnames({ [css.menu_item_default]: true, [css.menu_item_active]: matchMenu.key === item.key })}>
+							className={classnames({
+								[css.menu_item_default]: true,
+								[css.menu_item_active]: matchMenu ? matchMenu.id === item.id : false,
+							})}
+							style={{ paddingLeft: zIndex * 22.5 }}>
 							{itemContent}
 						</Link>
 					)}
@@ -69,4 +70,4 @@ function Menu(props) {
 		</ul>
 	);
 }
-export default React.memo(Menu);
+export default React.memo(OpenMenu);

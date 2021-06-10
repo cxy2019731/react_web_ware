@@ -1,31 +1,30 @@
-import { _SETTINGS, _USER, _LOCAL_ROUTER_PATH } from '@constant';
+import { _SETTINGS, _LOCAL_ROUTER_PATH } from '@constant';
 import css from './sider.module.css';
 import PerfectScrollbar from 'perfect-scrollbar';
-import Menu from './components/Menu';
 import { useLocation } from 'react-router-dom';
 import { getMenuInfo, getTreeArrPaths } from '@utils';
+import OpenMenu from './components/OpenMenu';
+import ShutMenu from './components/ShutMenu';
 
 function Sider(props) {
 	const location = useLocation();
 
-	const { moduleState: ms, connectedState: cs, connectedReducer: cr } = useConcent({ module: _SETTINGS, connect: [_USER] });
-
-	const userCs = cs[_USER];
-	const userCr = cr[_USER];
+	const { moduleState: ms, mr } = useConcent({ module: _SETTINGS });
 
 	const refSider = React.useRef(null);
 
 	const matchMenu = React.useMemo(() => {
-		const matchItem = getMenuInfo(userCs.menus, location.pathname) || {};
+		const matchItem = getMenuInfo(ms.menus, location.pathname) || null;
 		if (location.pathname) {
 			sessionStorage.setItem(_LOCAL_ROUTER_PATH, location.pathname);
 		}
 		return matchItem;
-	}, [location.pathname, userCs.menus]);
-
+	}, [location.pathname, ms.menus]);
 	React.useEffect(() => {
-		const menuPaths = getTreeArrPaths(userCs.menus, matchMenu);
-		userCr.openMenu(menuPaths.map((l) => l.key));
+		if (matchMenu) {
+			const menuPaths = getTreeArrPaths(ms.menus, matchMenu);
+			mr.openMenu(menuPaths.map((l) => l.id));
+		}
 	}, [matchMenu]);
 
 	React.useEffect(() => {
@@ -38,8 +37,8 @@ function Sider(props) {
 	}, [refSider]);
 
 	return (
-		<div ref={refSider} className={css.sider} style={{ width: ms.sider_width }}>
-			<Menu matchMenu={matchMenu} />
+		<div ref={refSider} className={css.sider} style={{ width: ms.collapsed ? ms.sider_width : ms.sider_item_height }}>
+			{ms.collapsed ? <OpenMenu matchMenu={matchMenu} /> : <ShutMenu matchMenu={matchMenu} />}
 		</div>
 	);
 }

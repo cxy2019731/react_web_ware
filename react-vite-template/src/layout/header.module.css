@@ -1,5 +1,23 @@
-.header{
-    background: var(--headerBgColor);
-    display: flex;
-    justify-content: space-between;
+.header {
+	background: var(--headerBgColor);
+	display: flex;
+	justify-content: space-between;
+    box-shadow: 0 5px 50px 1px rgba(0, 0, 0, .05);
+}
+.header_center {
+	flex-grow: 1;
+}
+.header_center > div {
+	height: 100%;
+}
+.header_center > div:hover{
+    background-color: rgba(0, 0, 0, .05);
+    cursor: pointer;
+}
+.header_center_collapsed {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    font-size: 20px;
+    color: var(--primary);
 }
