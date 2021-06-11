@@ -2,6 +2,7 @@
  * 关于路由-菜单的方法
  */
 import { flattenTree } from '@utils';
+import { _ROUTER_IFRAME } from '@constant';
 /**
  * 获取匹配的菜单的信息
  * @param {array} menus 数组
@@ -10,7 +11,11 @@ import { flattenTree } from '@utils';
  */
 export function getMenuInfo(menus = [], id) {
 	const flatMenus = flattenTree(menus);
-	return flatMenus.find((l) => l.id === id || l.path === id);
+	if (id.indexOf(_ROUTER_IFRAME) != -1) {
+		return flatMenus.find((l) => l?.href?.indexOf(id.split('.')[1]));
+	} else {
+		return flatMenus.find((l) => l.id === id || l.path === id);
+	}
 }
 
 /**

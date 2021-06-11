@@ -9,7 +9,7 @@
 import request from '@request';
 import { PROFIX_USER } from '@/service/prefix';
 import cr from '@/base/cc_reducer';
-import { _USER } from '@constant';
+import { _CC_USER } from '@constant';
 
 /**
  * 登录
@@ -22,7 +22,7 @@ export async function httpLogin({ userName, passWord }) {
 		data: { userName, passWord },
 	});
 	if (!code && data) {
-		cr[_USER].login(data);
+		cr[_CC_USER].login(data);
 		return true;
 	} else {
 		return null;

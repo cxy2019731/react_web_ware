@@ -1,65 +1,97 @@
 import { Icon } from '@components';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
-import { _SETTINGS } from '@constant';
+import { _CC_SETTINGS, _ROUTER_IFRAME } from '@constant';
 import css from './OpenMenu.module.css';
+import { openNewPage } from '@utils';
+import { useNavigate } from 'react-router-dom';
 
 function OpenMenu(props) {
-	const { moduleState: ms, mr } = useConcent({ module: _SETTINGS });
-	const { menus = ms.menus, style = {}, zIndex = 0, matchMenu = {} } = props;
+	const navigate = useNavigate();
+	const { menus = [], style = {}, openMenuKeys = [], zIndex = 0, matchMenu = {}, openMenu } = props;
 	if (!menus.length) {
 		return null;
 	}
+
+	const itemContent = (item, isChild = false) => (
+		<>
+			<span className={css.menu_item_left}>
+				<span className={css.menu_item_icon}>{zIndex > 0 ? null : <Icon type={item.icon} />}</span>
+				<span className={css.menu_item_title}>{item.title || item.name}</span>
+			</span>
+			{isChild ? (
+				<span className={css.menu_item_arrow}>
+					<Icon type='icon-chevron-right' />
+				</span>
+			) : null}
+		</>
+	);
+
+	const renderLink = (item) => {
+		if (item.href && item.blank) {
+			return (
+				<span style={{ paddingLeft: zIndex * 22.5 }} className={css.menu_item_default} onClick={() => openNewPage(item.href)}>
+					{itemContent(item)}
+				</span>
+			);
+		} else if (item.href) {
+			return (
+				<span
+					onClick={() => navigate(`/${_ROUTER_IFRAME}${item.href.split('.')[1]}`, { state: { url: item.href } })}
+					className={classnames({
+						[css.menu_item_default]: true,
+						[css.menu_item_active]: matchMenu ? matchMenu.id === item.id : false,
+					})}
+					style={{ paddingLeft: zIndex * 22.5 }}>
+					{itemContent(item)}
+				</span>
+			);
+		} else {
+			return (
+				<Link
+					to={item.path || ''}
+					className={classnames({
+						[css.menu_item_default]: true,
+						[css.menu_item_active]: matchMenu ? matchMenu.id === item.id : false,
+					})}
+					style={{ paddingLeft: zIndex * 22.5 }}>
+					{itemContent(item)}
+				</Link>
+			);
+		}
+	};
+
 	const renderMenuItem = (list) =>
 		list.map((item, index) => {
 			// 是否有子集
 			const isChild = item.children && item.children.length;
 
 			// 是否展开
-			const isOpen = isChild ? ms.openMenuKeys.includes(item.id) : false;
-			const itemContent = (
-				<>
-					<span className={css.menu_item_left}>
-						<span className={css.menu_item_icon}>{zIndex > 0 ? null : <Icon type={item.icon} />}</span>
-						<span className={css.menu_item_title}>{item.title || item.name}</span>
-					</span>
-					{isChild ? (
-						<span className={css.menu_item_arrow}>
-							<Icon type='icon-chevron-right' />
-						</span>
-					) : null}
-				</>
-			);
+			const isOpen = isChild ? openMenuKeys.includes(item.id) : false;
 			return (
 				<li className={css.menu_item} key={item.id}>
 					{isChild ? (
 						<>
 							<span
-								onClick={() => mr.openMenu([item.id])}
+								onClick={() => openMenu([item.id])}
 								className={classnames({
 									[css.menu_item_more]: true,
 									[css.menu_item_open]: !!isOpen,
 								})}
 								style={{ paddingLeft: zIndex * 22.5 }}>
-								{itemContent}
+								{itemContent(item, isChild)}
 							</span>
 							<OpenMenu
 								menus={item.children || []}
 								style={{ display: isOpen ? 'block' : 'none' }}
 								zIndex={zIndex + 1}
 								matchMenu={matchMenu || {}}
+								openMenu={openMenu}
+								openMenuKeys={openMenuKeys}
 							/>
 						</>
 					) : (
-						<Link
-							to={item.path || ''}
-							className={classnames({
-								[css.menu_item_default]: true,
-								[css.menu_item_active]: matchMenu ? matchMenu.id === item.id : false,
-							})}
-							style={{ paddingLeft: zIndex * 22.5 }}>
-							{itemContent}
-						</Link>
+						renderLink(item)
 					)}
 				</li>
 			);

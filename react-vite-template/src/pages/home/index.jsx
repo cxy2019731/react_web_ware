@@ -1,6 +1,6 @@
 import css from './index.module.css';
 import { Avatar, Modal } from 'antd';
-import { _GLOBAL, _USER } from '@constant';
+import { _CC_GLOBAL, _CC_USER } from '@constant';
 import { PoweroffOutlined, ExclamationCircleOutlined, SnippetsOutlined } from '@ant-design/icons';
 import { httpLogout } from '@http';
 import { v4 as uuidV4 } from 'uuid';
@@ -13,7 +13,7 @@ function setup(ctx) {
 }
 
 function HomeView(props) {
-	const ctx = useConcent({ module: _GLOBAL, connect: [_USER], setup });
+	const ctx = useConcent({ module: _CC_GLOBAL, connect: [_CC_USER], setup });
 
 	const { state, moduleState: ms, connectedState: cs, cr } = ctx;
 
@@ -29,7 +29,7 @@ function HomeView(props) {
 			async onOk() {
 				const res = await httpLogout();
 				if (res) {
-					cr[_USER].resetStatus();
+					cr[_CC_USER].resetStatus();
 				}
 			},
 		});

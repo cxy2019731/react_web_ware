@@ -8,8 +8,10 @@
  */
 import { v4 as uuidV4 } from 'uuid';
 const state = {
+	// 布局模式
+	layoutMode:'leftMixin',//leftMenu | leftMixin | topMenu
 	// 头部高度
-	header_height: `55px`,
+	header_height: `45px`,
 	// 展开宽度
 	sider_width: `220px`,
 	// 菜单高度
@@ -34,39 +36,51 @@ const state = {
 			icon: 'icon-box',
 		},
 		{
-			id: uuidV4(),
+			id: 'systemSettings',
 			title: '系统设置',
 			icon: 'icon-box',
 			children: [
 				{
 					id: uuidV4(),
 					title: '用户管理',
+					path: `/user`,
 					icon: 'icon-box',
+					parentId: 'systemSettings',
 				},
 				{
 					id: uuidV4(),
 					title: '角色管理',
+					path: `/role`,
 					icon: 'icon-box',
+					parentId: 'systemSettings',
 				},
 				{
 					id: uuidV4(),
 					title: '部门管理',
+					path: `/department`,
 					icon: 'icon-box',
+					parentId: 'systemSettings',
 				},
 				{
 					id: uuidV4(),
 					title: '权限管理',
+					path: `/auth`,
 					icon: 'icon-box',
+					parentId: 'systemSettings',
 				},
 				{
 					id: uuidV4(),
 					title: '菜单管理',
+					path: `/menu`,
 					icon: 'icon-box',
+					parentId: 'systemSettings',
 				},
 				{
 					id: uuidV4(),
 					title: '字典管理',
+					path: `/dict`,
 					icon: 'icon-box',
+					parentId: 'systemSettings',
 				},
 			],
 		},
@@ -81,19 +95,24 @@ const state = {
 			icon: 'icon-box',
 		},
 		{
-			id: uuidV4(),
+			id: 'external',
 			title: '外部页面',
 			icon: 'icon-box',
 			children: [
 				{
 					id: uuidV4(),
-					title: '内嵌页面',
+					title: 'ANTD-REACT',
 					icon: 'icon-box',
+					href: `https://ant.design/index-cn`,
+					parentId: 'external',
 				},
 				{
 					id: uuidV4(),
-					title: '外链页面',
+					title: 'ANTD-REACT(外链)',
 					icon: 'icon-box',
+					href: 'https://ant.design/index-cn',
+					blank: true,
+					parentId: 'external',
 				},
 			],
 		},
@@ -122,6 +141,7 @@ const state = {
 					id: uuidV4(),
 					title: '二级菜单二',
 					icon: 'icon-box',
+					parentId: '///666',
 				},
 			],
 		},

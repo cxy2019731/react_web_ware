@@ -3,6 +3,8 @@
 	--primary: #1890ff;
 	/* 顶部Header */
 	--headerBgColor: #ffffff;
+	/* 底色 */
+	--baseBgColor: #f0f2f5;
 	/* 菜单Menu */
 	--siderBgColor: #3b3e47;
 	--siderFontColor: #b2b8be;
@@ -10,4 +12,5 @@
 	--siderHoverColor: var(--primary);
 	--siderHoverBgColor: rgba(0, 0, 0, 0.2);
 	--siderActiveColor: white;
+	--siderActiveBgColor: var(--primary);
 }

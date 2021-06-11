@@ -11,7 +11,7 @@ import qs from 'qs';
 import { message } from 'antd';
 import { isTokenEffective, getToken } from '@utils';
 import mr from '@/base/cc_reducer';
-import { _USER, _TOKEN } from '@constant';
+import { _CC_USER, _TOKEN } from '@constant';
 /**
  * URL白名单,无需携带TOKEN-一般后端会做处理,这里配置主要是防止请求拦截中检测TOKEN
  */
@@ -65,7 +65,7 @@ instance.interceptors.request.use(
 		if (!whiteUrls.some((url) => config.url.indexOf(url) != -1)) {
 			// 添加TOKEN-没有TOKEN去登陆
 			if (!isTokenEffective()) {
-				mr[_USER].reset();
+				mr[_CC_USER].reset();
 			}
 			config.headers[_TOKEN] = getToken();
 		}
@@ -98,7 +98,7 @@ instance.interceptors.response.use(
 		switch (response.status) {
 			case 401:
 				// 跳去登录/授权
-				mr[_USER].reset();
+				mr[_CC_USER].reset();
 				break;
 		}
 		return Promise.reject(errorText);

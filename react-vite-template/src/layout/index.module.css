@@ -1,6 +1,7 @@
 .main{
     display: flex;
     justify-content: flex-start;
+    background: var(--baseBgColor);
 }
 .main_content{
     flex-grow: 1;

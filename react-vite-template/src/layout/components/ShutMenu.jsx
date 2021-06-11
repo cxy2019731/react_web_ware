@@ -1,42 +1,54 @@
 import css from './ShutMenu.module.css';
-import { _SETTINGS } from '@constant';
+import { _CC_SETTINGS } from '@constant';
 import { Icon } from '@components';
 import { Link } from 'react-router-dom';
 import { Tooltip } from 'antd';
 import classnames from 'classnames';
-import { useEventListener } from 'ahooks';
+import { useHover, useUpdateEffect } from 'ahooks';
 
 const setup = (ctx) => {
-	const { setState } = ctx;
-	/**
-	 * 状态初始化
-	 */
-	ctx.initState({});
-	// 方法集合
 	const st = {
-		mouseVerHandler: (event) => {
-			console.log(event);
+		mouseVerHandler: (event, item) => {
+			try {
+				if (item?.children?.length) {
+					const { right, top } = event.currentTarget.getBoundingClientRect();
+					ctx.emit('_sider_float_menu_coods', {
+						top,
+						left: right,
+						...item,
+					});
+				} else {
+					st.set_floatMenuData();
+				}
+			} catch (err) {
+				st.set_floatMenuData();
+			}
 		},
+		set_floatMenuData: (val) => ctx.emit('_sider_float_menu_coods', val || null),
 	};
 
 	return st;
 };
 
 function ShutMenu(props) {
-	const { moduleState: ms, mr, settings: st } = useConcent({ module: _SETTINGS, setup, props });
-	const { menus = ms.menus, matchMenu = {} } = props;
+	const { settings: st } = useConcent({ setup, props });
+	const { menus = [], matchMenu = {}, cbHover } = props;
+
 	const refMenu = React.useRef(null);
-	useEventListener('mouseover', st.mouseVerHandler, { target: refMenu });
+	const isHover = useHover(refMenu);
+
+	useUpdateEffect(() => {
+		cbHover && cbHover(isHover);
+	}, [isHover]);
 
 	const renderMenuList = (list) =>
 		list.map((item, index) => (
-			<li className={css.menu_item} key={item.id}>
+			<li className={css.menu_item} key={item.id} onMouseOver={(e) => st.mouseVerHandler(e, item)}>
 				{item?.children?.length ? (
 					<>
 						<span className={css.menu_item_default}>
 							<Icon type={item.icon} />
 						</span>
-						<FloatMenu matchMenu={matchMenu} {...item} />
 					</>
 				) : (
 					<Tooltip placement='right' title={item.title || item.name}>
@@ -53,27 +65,6 @@ function ShutMenu(props) {
 			</li>
 		));
 
-	return (
-		<ul className={classnames({ [css.menu]: true })} ref={refMenu}>
-			{renderMenuList(menus)}
-		</ul>
-	);
+	return <ul ref={refMenu} className={classnames({ [css.menu]: true })}>{renderMenuList(menus)}</ul>;
 }
 export default React.memo(ShutMenu);
-
-function FloatMenu(props) {
-	const { left, top, title, name, children, matchMenu } = props;
-
-	return (
-		<div className={css.menu_float}>
-			<div>{title || name | ''}</div>
-			{children?.length ? (
-				<ul>
-					{children.map((item, index) => (
-						<li key={item.id}>{item.title || item.name || ''}</li>
-					))}
-				</ul>
-			) : null}
-		</div>
-	);
-}

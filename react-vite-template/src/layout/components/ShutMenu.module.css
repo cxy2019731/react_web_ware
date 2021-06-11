@@ -9,8 +9,8 @@
 }
 .menu_item_default {
 	display: block;
-    text-align: center;
-    line-height: var(--siderItemHeight);
+	text-align: center;
+	line-height: var(--siderItemHeight);
 	color: var(--siderFontColor);
 }
 .menu_item:hover {
@@ -30,10 +30,4 @@
 	width: calc(var(--siderItemHeight) / 20);
 	z-index: 555;
 	background-color: var(--primary);
-}
-/* 浮动菜单 */
-.menu_float{
-    position: fixed;
-    z-index: -1000;
-    transition: top .2s ease-in-out;
 }

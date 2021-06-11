@@ -1,4 +1,4 @@
-import { _USER, _GLOBAL } from '@constant';
+import { _CC_USER, _CC_GLOBAL } from '@constant';
 import { Link } from 'react-router-dom';
 import { useKeyPress } from 'ahooks';
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
@@ -33,7 +33,7 @@ function setup(ctx) {
 function LoginView() {
 	const [form] = Form.useForm();
 
-	const ctx = useConcent({ module: _USER, connect: [_GLOBAL, MODEL_NAME], setup });
+	const ctx = useConcent({ module: _CC_USER, connect: [_CC_GLOBAL, MODEL_NAME], setup });
 
 	const { state, moduleState: ms, settings: st, globalState: gs } = ctx;
 

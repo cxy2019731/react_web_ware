@@ -89,3 +89,12 @@ export function flattenTree(items, childrenKey = 'children') {
 		}
 	}
 }
+
+/**
+ * 打开新tab页面
+ * @param {string} url url
+ */
+export function openNewPage(url) {
+	const w = window.open('about:blank');
+	w.location.href = url;
+}

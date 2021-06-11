@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { _USER } from '@constant';
+import { _CC_USER } from '@constant';
 /**
  * 授权判定
  * @param {object} props 参数
@@ -9,7 +9,7 @@ import { _USER } from '@constant';
  * @returns node | null
  */
 function Authorized(props) {
-	const { moduleState: ms } = useConcent({ module: _USER });
+	const { moduleState: ms } = useConcent({ module: _CC_USER });
 	const { children = null, authority, noMatch = '无权限' } = props;
 	// currentAuthority需要放入角色key、权限key
 	const currentAuthority = useMemo(() => [...ms.auths, ...ms.roles], [ms.auths, ms.roles]);

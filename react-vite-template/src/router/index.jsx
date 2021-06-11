@@ -10,40 +10,77 @@
 import { memo } from 'react';
 import { HashRouter, useRoutes } from 'react-router-dom';
 import routes from '@/router/routeComponents';
+import {
+	_ROUTER_DEFAULT,
+	_ROUTER_INITIALIZE,
+	_ROUTER_HOME,
+	_ROUTER_LOGIN,
+	_ROUTER_IFRAME,
+	_ROUTER_USER,
+	_ROUTER_ROLE,
+	_ROUTER_DICT,
+	_ROUTER_MENU,
+	_ROUTER_AUTH,
+	_ROUTER_DEPARTMENT,
+} from '@constant';
 /**
  * 路由集合
  */
 const Elements = memo(() =>
 	useRoutes([
 		{
-			path: '/',
-			element: <routes.layout />,
+			path: _ROUTER_DEFAULT,
+			element: <routes.Layout />,
 			children: [
 				{
-					path: 'home',
-					element: <routes.home />,
+					path: _ROUTER_HOME,
+					element: <routes.Home />,
 				},
 				{
-					path:'moreMenu3-1',
-					element:<h3>/moreMenu3-1</h3>
+					path: _ROUTER_USER,
+					element: <routes.User />,
+				},
+				{
+					path: _ROUTER_ROLE,
+					element: <routes.Role />,
+				},
+				{
+					path: _ROUTER_DICT,
+					element: <routes.Dict />,
+				},
+				{
+					path: _ROUTER_MENU,
+					element: <routes.Menu />,
+				},
+				{
+					path: _ROUTER_AUTH,
+					element: <routes.Auth />,
+				},
+				{
+					path: _ROUTER_DEPARTMENT,
+					element: <routes.Department />,
+				},
+				{
+					path: `${_ROUTER_IFRAME}*`,
+					element: <routes.Iframe />,
 				},
 				{
 					path: '*',
-					element: <routes.notFount />,
+					element: <routes.NotFount />,
 				},
 			],
 		},
 		{
-			path: '/initialize',
-			element: <routes.initialize />,
+			path: `/${_ROUTER_INITIALIZE}`,
+			element: <routes.Initialize />,
 		},
 		{
-			path: '/login',
-			element: <routes.login />,
+			path: `/${_ROUTER_LOGIN}`,
+			element: <routes.Login />,
 		},
 		{
 			path: '*',
-			element: <routes.notFount />,
+			element: <routes.NotFount />,
 		},
 	]),
 );
@@ -53,9 +90,9 @@ const Elements = memo(() =>
 function Router() {
 	return (
 		<HashRouter basename='/'>
-			<routes.app>
+			<routes.App>
 				<Elements />
-			</routes.app>
+			</routes.App>
 		</HashRouter>
 	);
 }

@@ -1,0 +1,65 @@
+.menu_float {
+	--radius: 5px;
+	--itemHieght: calc(var(--siderItemHeight) * 0.9);
+	position: fixed;
+	left: 100%;
+	top: 100vh;
+	z-index: 1000;
+	color: var(--siderFontColor);
+	min-width: 160px;
+	padding-left: 3px;
+	transition: top 0.2s ease-in-out;
+}
+.menu_float > div:not(.menu_float) {
+	background: var(--siderBgColor);
+	border-radius: var(--radius);
+	overflow: hidden;
+}
+.title,
+.menu_item_link {
+	padding: 0 10px 0 20px;
+	line-height: var(--itemHieght);
+}
+.title,
+.menu_item_link {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.title {
+	background: rgba(0, 0, 0, 0.9);
+	height: calc(var(--itemHieght));
+	padding: 0 10px 0 5px;
+}
+.menu_title_name > i {
+	margin-right: 5px;
+}
+.menuMrl20 {
+	margin-left: 20px;
+}
+.menu_title_arrow {
+	transform: rotate(90deg);
+}
+.menu_item_arrow {
+	float: right;
+}
+.menu_lsit {
+}
+.menu_item {
+}
+.menu_item_link {
+	color: var(--siderFontColor);
+	height: calc(var(--itemHieght));
+	display: block;
+	width: 100%;
+	cursor: pointer;
+}
+.menu_item_link:hover {
+	color: var(--siderHoverColor);
+	background: var(--siderHoverBgColor);
+}
+.menu_item_active {
+	color: var(--siderActiveColor) !important;
+	background: var(--siderActiveBgColor)!important;
+}

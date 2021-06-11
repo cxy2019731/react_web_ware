@@ -3,7 +3,7 @@ import Header from './Header';
 import Sider from './Sider';
 import Footer from './Footer';
 import css from './index.module.css';
-import { _SETTINGS } from '@constant';
+import { _CC_SETTINGS } from '@constant';
 import PerfectScrollbar from 'perfect-scrollbar';
 
 function setup(ctx) {
@@ -15,7 +15,7 @@ function setup(ctx) {
 }
 
 function LayoutView(props) {
-	const { state, moduleState: ms } = useConcent({ module: _SETTINGS, setup, props });
+	const { state, moduleState: ms } = useConcent({ module: _CC_SETTINGS, setup, props });
 	const refMainContent = React.useRef(null);
 
 	React.useEffect(() => {

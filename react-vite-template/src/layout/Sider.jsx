@@ -1,15 +1,33 @@
-import { _SETTINGS, _LOCAL_ROUTER_PATH } from '@constant';
+import { _CC_SETTINGS, _LOCAL_ROUTER_PATH } from '@constant';
 import css from './sider.module.css';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { useLocation } from 'react-router-dom';
 import { getMenuInfo, getTreeArrPaths } from '@utils';
 import OpenMenu from './components/OpenMenu';
 import ShutMenu from './components/ShutMenu';
+import FloatMenu from './components/FloatMenu';
+
+function setup(ctx) {
+	ctx.initState({
+		floatMenuData: null,
+		cbHover: false,
+	});
+
+	ctx.on('_sider_float_menu_coods', (floatMenuData) =>
+		ctx.setState({
+			floatMenuData,
+		}),
+	);
+	const st = {
+		floatCbHiver: (val) => ctx.setState({ cbHover: val || false }),
+	};
+	return st;
+}
 
 function Sider(props) {
 	const location = useLocation();
 
-	const { moduleState: ms, mr } = useConcent({ module: _SETTINGS });
+	const { state, settings: st, moduleState: ms, mr } = useConcent({ module: _CC_SETTINGS, setup, props });
 
 	const refSider = React.useRef(null);
 
@@ -20,6 +38,7 @@ function Sider(props) {
 		}
 		return matchItem;
 	}, [location.pathname, ms.menus]);
+
 	React.useEffect(() => {
 		if (matchMenu) {
 			const menuPaths = getTreeArrPaths(ms.menus, matchMenu);
@@ -37,8 +56,17 @@ function Sider(props) {
 	}, [refSider]);
 
 	return (
-		<div ref={refSider} className={css.sider} style={{ width: ms.collapsed ? ms.sider_width : ms.sider_item_height }}>
-			{ms.collapsed ? <OpenMenu matchMenu={matchMenu} /> : <ShutMenu matchMenu={matchMenu} />}
+		<div className={css.menu}>
+			<div ref={refSider} className={css.sider} style={{ width: ms.collapsed ? ms.sider_width : ms.header_height }}>
+				{ms.collapsed ? (
+					<OpenMenu matchMenu={matchMenu} menus={ms.menus} openMenuKeys={ms.openMenuKeys} openMenu={mr.openMenu} />
+				) : (
+					<ShutMenu matchMenu={matchMenu} menus={ms.menus} cbHover={st.floatCbHiver} />
+				)}
+			</div>
+			{!ms.collapsed && state.floatMenuData ? (
+				<FloatMenu matchMenu={matchMenu} {...state.floatMenuData} rootMenuIsHover={state.cbHover} />
+			) : null}
 		</div>
 	);
 }

@@ -65,7 +65,7 @@
 }
 /* 选中 */
 .menu_item_active {
-	background-color: var(--primary) !important;
+	background-color: var(--siderActiveBgColor) !important;
 	color: var(--siderActiveColor) !important;
 }
 /* 关闭 */

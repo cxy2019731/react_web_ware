@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { _HOME, _USER, _LOCAL_ROUTER_PATH } from '@constant';
+import { _ROUTER_HOME, _CC_USER, _LOCAL_ROUTER_PATH } from '@constant';
 import { useInterval } from 'ahooks';
 import css from './index.module.less';
 import { httpGetUserInfo } from '@http';
@@ -24,7 +24,7 @@ function setup(ctx) {
 export default (props) => {
 	const navigate = useNavigate();
 
-	const { state, settings: st, mr } = useConcent({ module: _USER, setup });
+	const { state, settings: st, mr } = useConcent({ module: _CC_USER, setup });
 
 	useInterval(st.changeProgress, state.progress < state.targetProgress ? 0 : null);
 	// 用户信息get
@@ -48,7 +48,7 @@ export default (props) => {
 	React.useEffect(() => {
 		if (state.progress >= 100) {
 			const catch_router_path = sessionStorage.getItem(_LOCAL_ROUTER_PATH) || null;
-			navigate(catch_router_path || _HOME);
+			navigate(catch_router_path || _ROUTER_HOME);
 		}
 	}, [state.progress]);
 

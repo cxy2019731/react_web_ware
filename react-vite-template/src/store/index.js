@@ -9,9 +9,11 @@
 import global from './global/index';
 import settings from './settings/index';
 import user from './user/index';
+import enums from './enum/index';
 
 export default {
 	...global,
 	...settings,
 	...user,
+	...enums,
 };

@@ -1,9 +1,18 @@
-import app from '@/app';
-import layout from '@/layout/index';
-import notFount from '@/pages/notFound/index';
-import login from '@/pages/login/index';
-import home from '@/pages/home/index';
-import initialize from '@/pages/initialize/index';
+import App from '@/app';
+import Layout from '@/layout/index';
 
-export default { app, home, login, notFount, layout, initialize };
+import NotFount from '@/pages/notFound/index'; //404
+import Login from '@/pages/login/index'; //login
+import Home from '@/pages/home/index'; //首页
+import Initialize from '@/pages/initialize/index'; //初始化进度
+// 系统设置
+import User from '@/pages/systemSettings/user/index'; //用户管理
+import Role from '@/pages/systemSettings/role/index'; //角色管理
+import Dict from '@/pages/systemSettings/dict/index'; //字典管理
+import Auth from '@/pages/systemSettings/auth/index'; //权限管理
+import Menu from '@/pages/systemSettings/menu/index'; //菜单管理
+import Department from '@/pages/systemSettings/department/index'; //部门管理
+// iframe
+import Iframe from '@/pages/iframe/index';
 
+export default { App, Home, Login, NotFount, Layout, Initialize, User, Role, Dict, Auth, Menu, Department, Iframe };
