@@ -9,7 +9,7 @@
 import { v4 as uuidV4 } from 'uuid';
 const state = {
 	// 布局模式
-	layoutMode:'leftMixin',//leftMenu | leftMixin | topMenu
+	layoutMode: 'leftMixin', //leftMenu | leftMixin | topMenu
 	// 头部高度
 	header_height: `45px`,
 	// 展开宽度
@@ -28,17 +28,17 @@ const state = {
 			id: uuidV4(),
 			title: '工作台',
 			path: '/home',
-			icon: 'icon-box',
+			icon: 'icon-gongzuotai',
 		},
 		{
 			id: uuidV4(),
 			title: '数据看板',
-			icon: 'icon-box',
+			icon: 'icon-shujukanban',
 		},
 		{
 			id: 'systemSettings',
 			title: '系统设置',
-			icon: 'icon-box',
+			icon: 'icon-xitongshezhi',
 			children: [
 				{
 					id: uuidV4(),
@@ -85,19 +85,27 @@ const state = {
 			],
 		},
 		{
-			id: uuidV4(),
+			id: 'components',
 			title: '组件',
-			icon: 'icon-box',
+			icon: 'icon-zujian',
+			children: [
+				{
+					id: uuidV4(),
+					title: '树组件',
+					path: '/tree',
+					parentId:'components'
+				},
+			],
 		},
 		{
 			id: uuidV4(),
 			title: '页面',
-			icon: 'icon-box',
+			icon: 'icon-iconset0335',
 		},
 		{
 			id: 'external',
 			title: '外部页面',
-			icon: 'icon-box',
+			icon: 'icon-wailian_icon',
 			children: [
 				{
 					id: uuidV4(),
@@ -120,7 +128,7 @@ const state = {
 			id: '///666',
 			parentId: null,
 			title: '多级菜单',
-			icon: 'icon-box',
+			icon: 'icon-duojilanmu',
 			children: [
 				{
 					id: '///6666',

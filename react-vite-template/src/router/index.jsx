@@ -22,6 +22,7 @@ import {
 	_ROUTER_MENU,
 	_ROUTER_AUTH,
 	_ROUTER_DEPARTMENT,
+	_ROUTER_TREE,
 } from '@constant';
 /**
  * 路由集合
@@ -63,6 +64,10 @@ const Elements = memo(() =>
 				{
 					path: `${_ROUTER_IFRAME}*`,
 					element: <routes.Iframe />,
+				},
+				{
+					path:_ROUTER_TREE,
+					element:<routes.Tree />
 				},
 				{
 					path: '*',

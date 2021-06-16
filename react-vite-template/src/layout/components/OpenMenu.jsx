@@ -16,7 +16,7 @@ function OpenMenu(props) {
 	const itemContent = (item, isChild = false) => (
 		<>
 			<span className={css.menu_item_left}>
-				<span className={css.menu_item_icon}>{zIndex > 0 ? null : <Icon type={item.icon} />}</span>
+				<span className={css.menu_item_icon}>{zIndex > 0 ? null : <Icon type={item.icon} size={12} />}</span>
 				<span className={css.menu_item_title}>{item.title || item.name}</span>
 			</span>
 			{isChild ? (

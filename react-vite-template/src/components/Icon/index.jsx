@@ -1,5 +1,5 @@
 function Icon(props) {
-	const { type = '', color = '', size = '', style = {}, className = '', onClick = null, onDoubleClick = null } = props;
+	const { type = '', color = '', size = 14, style = {}, className = '', onClick = null, onDoubleClick = null } = props;
 
 	return (
 		<i
@@ -7,7 +7,7 @@ function Icon(props) {
 			style={{
 				...style,
 				color: color || style.color || '',
-				size: size || style.size || '',
+				fontSize: size || style.size || '',
 			}}
 			onClick={onClick}
 			onDoubleClick={onDoubleClick}
