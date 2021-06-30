@@ -23,6 +23,8 @@ export const _ROUTER_MENU = `menu`;
 export const _ROUTER_AUTH = `auth`;
 // 部门管理
 export const _ROUTER_DEPARTMENT = `department`;
+// 树组件
+export const _ROUTER_TREE = `tree`;
 /**
  * =============================================公共的变量=============================================
  */
@@ -50,6 +52,7 @@ export const _CC_ENUM = `$$enum`;
 /**
  *=============================================concent事件变量=============================================
  */
+export const _EVENT_SETTINGS_VISIBLE = `event_settings_visible`;
 /**
  *=============================================enum枚举变量=============================================
  */

@@ -47,7 +47,7 @@ function ShutMenu(props) {
 				{item?.children?.length ? (
 					<>
 						<span className={css.menu_item_default}>
-							<Icon type={item.icon} />
+							<Icon type={item.icon} size={12} />
 						</span>
 					</>
 				) : (
@@ -65,6 +65,10 @@ function ShutMenu(props) {
 			</li>
 		));
 
-	return <ul ref={refMenu} className={classnames({ [css.menu]: true })}>{renderMenuList(menus)}</ul>;
+	return (
+		<ul ref={refMenu} className={classnames({ [css.menu]: true })}>
+			{renderMenuList(menus)}
+		</ul>
+	);
 }
 export default React.memo(ShutMenu);

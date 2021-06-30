@@ -7,8 +7,10 @@
  * @FilePath: \react-vite2-template\src\i18n\enUS\index.js
  */
 import login from './login';
+import header from './header';
 export default {
 	...login,
+	...header,
 	'global.language.zhCN': 'Chinese',
 	'global.language.enUS': 'English',
 	'global.loading.text':'Loading',

@@ -18,10 +18,10 @@
 	background-color: var(--siderHoverBgColor);
 }
 .menu_item_active {
-	background-color: var(--siderHoverBgColor);
+	background-color: var(--siderActiveBgColor);
 	color: var(--siderActiveColor);
 }
-.menu_item_active::before {
+.menu_item:hover::before {
 	content: '';
 	position: absolute;
 	top: 0;

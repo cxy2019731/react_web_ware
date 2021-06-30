@@ -14,5 +14,7 @@ import Menu from '@/pages/systemSettings/menu/index'; //菜单管理
 import Department from '@/pages/systemSettings/department/index'; //部门管理
 // iframe
 import Iframe from '@/pages/iframe/index';
+// 组件
+import Tree from '@/pages/components/tree/index'; //树组件
 
-export default { App, Home, Login, NotFount, Layout, Initialize, User, Role, Dict, Auth, Menu, Department, Iframe };
+export default { App, Home, Login, NotFount, Layout, Initialize, User, Role, Dict, Auth, Menu, Department, Iframe, Tree };

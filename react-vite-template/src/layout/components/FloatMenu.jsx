@@ -2,7 +2,10 @@ import css from './FloatMenu.module.css';
 import { Link } from 'react-router-dom';
 import { Icon } from '@components';
 import { useHover } from 'ahooks';
-import classNames from 'classnames';
+import classnames from 'classnames';
+import { useNavigate } from 'react-router-dom';
+import { _ROUTER_IFRAME } from '@constant';
+import { openNewPage } from '@utils';
 
 function setup(ctx) {
 	ctx.initState({
@@ -37,6 +40,7 @@ function setup(ctx) {
 }
 
 function FloatMenu(props) {
+	const navigate = useNavigate();
 	const { state, settings: st } = useConcent({ setup, props });
 	const { top, left, icon, title, name, children, matchMenu, zIndex = 0, rootMenuIsHover = true } = props;
 
@@ -45,6 +49,38 @@ function FloatMenu(props) {
 		onEnter: st.onEnter,
 		onLeave: st.onLeave,
 	});
+
+	const renderLink = (item) => {
+		if (item.href && item.blank) {
+			return (
+				<span className={css.menu_item_link} onClick={() => openNewPage(item.href)}>
+					{item.title || item.name || ''}
+				</span>
+			);
+		} else if (item.href) {
+			return (
+				<span
+					onClick={() => navigate(`/${_ROUTER_IFRAME}${item.href.split('.')[1]}`, { state: { url: item.href } })}
+					className={classnames({
+						[css.menu_item_link]: true,
+						[css.menu_item_active]: matchMenu ? matchMenu.id === item.id : false,
+					})}>
+					{item.title || item.name || ''}
+				</span>
+			);
+		} else {
+			return (
+				<Link
+					to={item.path || ''}
+					className={classnames({
+						[css.menu_item_link]: true,
+						[css.menu_item_active]: matchMenu?.id === item.id,
+					})}>
+					{item.title || item.name || ''}
+				</Link>
+			);
+		}
+	};
 
 	return (
 		<div
@@ -56,7 +92,7 @@ function FloatMenu(props) {
 					<span className={css.menu_title_name}>
 						{!zIndex ? <Icon type={icon} /> : null}
 						<span
-							className={classNames({
+							className={classnames({
 								[css.menuMrl20]: !!zIndex,
 							})}>
 							{title || name | ''}
@@ -78,14 +114,7 @@ function FloatMenu(props) {
 										</span>
 									</span>
 								) : (
-									<Link
-										to={item.path || ''}
-										className={classNames({
-											[css.menu_item_link]: true,
-											[css.menu_item_active]: matchMenu?.id === item.id,
-										})}>
-										{item.title || item.name || ''}
-									</Link>
+									renderLink(item)
 								)}
 							</li>
 						))}

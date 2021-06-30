@@ -47,15 +47,20 @@
 /* 展开移入 */
 .menu_item_more:hover,
 .menu_item_default:hover {
-	background-color: var(--siderHoverBgColor);
+	/* background-color: var(--siderHoverBgColor); */
 	color: var(--siderHoverColor);
+}
+.menu_item_more:hover::before,
+.menu_item_default:hover::before {
+	background-color: var(--primary) !important;
 }
 /* 展开选择 */
 .menu_item_open {
 	background-color: var(--siderHoverBgColor);
+	color: var(--primary);
 }
 .menu_item_open::before {
-	background-color: var(--primary) !important;
+	/* background-color: var(--primary) !important; */
 }
 .menu_item_open .menu_item_arrow {
 	transform: rotate(90deg);

@@ -16,7 +16,7 @@ function OpenMenu(props) {
 	const itemContent = (item, isChild = false) => (
 		<>
 			<span className={css.menu_item_left}>
-				<span className={css.menu_item_icon}>{zIndex > 0 ? null : <Icon type={item.icon} />}</span>
+				<span className={css.menu_item_icon}>{zIndex > 0 ? null : <Icon type={item.icon} size={12} />}</span>
 				<span className={css.menu_item_title}>{item.title || item.name}</span>
 			</span>
 			{isChild ? (
@@ -63,11 +63,10 @@ function OpenMenu(props) {
 
 	const renderMenuItem = (list) =>
 		list.map((item, index) => {
-			// 是否有子集
 			const isChild = item.children && item.children.length;
 
-			// 是否展开
 			const isOpen = isChild ? openMenuKeys.includes(item.id) : false;
+
 			return (
 				<li className={css.menu_item} key={item.id}>
 					{isChild ? (

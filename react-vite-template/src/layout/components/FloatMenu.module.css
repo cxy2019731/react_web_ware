@@ -55,11 +55,22 @@
 	width: 100%;
 	cursor: pointer;
 }
+
 .menu_item_link:hover {
 	color: var(--siderHoverColor);
-	background: var(--siderHoverBgColor);
+	/* background: var(--siderHoverBgColor); */
+}
+.menu_item_link:hover::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: calc(var(--itemHieght) / 15);
+	z-index: 555;
+	background-color: var(--primary);
 }
 .menu_item_active {
 	color: var(--siderActiveColor) !important;
-	background: var(--siderActiveBgColor)!important;
+	background: var(--siderActiveBgColor) !important;
 }
